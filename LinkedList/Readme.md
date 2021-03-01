@@ -33,8 +33,8 @@
 
 ## LINKED LIST AVANTAJLARI :
 
-  - dinamik bir veri yapisina sahiptir.(istedigimiz kadar eleman eklenebilir)
-  - eleman ekleme ve silme islemleri kolaydir.(index degeri ile ugrasmiyoruz)
+  ` Linked List’in avantajı, hafızayı dinamik olarak kullanmasıdır. Buna göre hafızadan silinen bir bilgi için hafıza alanı boşaltılacak veya yeni eklenen bir bilgi için sadece o bilgiyi tutmaya yetecek kadar hafıza alanı ayrılacaktır.
+    Eleman ekleme ve silme islemleri kolaydir.(index degeri ile ugrasmiyoruz)`
 
 ## LINKED LIST DEZAVANTAJLARI :
   - random erisim yoktur.
