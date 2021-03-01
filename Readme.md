@@ -2,4 +2,4 @@
 
 Created with CodeSandbox
 
-[](https://static.javatpoint.com/ds/images/ds-introduction.png)
+![](https://static.javatpoint.com/ds/images/ds-introduction.png)
