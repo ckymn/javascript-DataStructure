@@ -17,6 +17,7 @@
   - 1. Tek Yonlu Bagli Listeler-(Singly Linked List)
   - 2. Dairesel Bagli Listeler-(Circular Linked List)
   - 3. Cift Yonlu Bagli Listeler-(Doubly Linked List)
+      -![](http://bilgisayarkavramlari.com/wp-content/uploads/2007/05/doublylinkedlist.png) 
 
 ## LINKED LIST ISLEMLERI :
 
