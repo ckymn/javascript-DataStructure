@@ -13,7 +13,7 @@
 ![LindeList](https://i1.wp.com/gokhan-gokalp.com/wp-content/uploads/2015/06/singly.jpeg?ssl=1])
 
 ## LINKED LIST CESITLERI :
-
+   -![](http://www.bilgisayarkavramlari.com/wp-content/uploads/050911_1332_BalListel1.png)
   - 1. Tek Yonlu Bagli Listeler-(Singly Linked List)
   - 2. Dairesel Bagli Listeler-(Circular Linked List)
   - 3. Cift Yonlu Bagli Listeler-(Doubly Linked List)
