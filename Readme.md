@@ -6,21 +6,30 @@ Created with CodeSandbox
 
 ### DataStructure Icerik
 
-  1. 🏍Linked List (Bagli Listeler)
+  1. Linked List (Bagli Listeler)
      * 🏒Dogrusal Bagli Liste
      * 🎈Dairesel Bagli Liste
      * 🎗Cift Yonlu Bagli Liste
+
+
   2. ADT
      * Stack
      * Queue
+
+
   3.Trees
      * Binary Tree
      * BST
      * AVL, Red Black vs.
+
+
   4.Heap
-  5.Graph
+
+
+  6.Graph
      * MST
      * Shortes Path
      * Max Flow
-  6.Hash
-  7.Matrisler 
+  7.Hash
+  
+  9.Matrisler 
