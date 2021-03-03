@@ -41,5 +41,5 @@
   - random erisim yoktur.
   - ekstra hafiza kullaniyor (pointer[isaretci])
 
-# DAHA IYI ANLAMAK ICIN BU LINKE TIKLAYIN 😎
-![go](https://visualgo.net/en/list)GO
+### DAHA IYI ANLAMAK ICIN BU LINKE TIKLAYIN 😎
+`![go](https://visualgo.net/en/list)`
