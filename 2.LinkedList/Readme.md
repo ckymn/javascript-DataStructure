@@ -42,4 +42,4 @@
   - ekstra hafiza kullaniyor (pointer[isaretci])
 
 ### DAHA IYI ANLAMAK ICIN BU LINKE TIKLAYIN 😎
-![LINKEDLISTVIDEO](https://visualgo.net)
+[LINKEDLISTVIDEO](https://visualgo.net)
