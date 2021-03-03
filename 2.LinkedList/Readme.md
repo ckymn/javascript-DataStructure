@@ -42,4 +42,4 @@
   - ekstra hafiza kullaniyor (pointer[isaretci])
 
 # DAHA IYI ANLAMAK ICIN BU LINKE TIKLAYIN 😎
-![](https://visualgo.net/en/list)GO
+![go](https://visualgo.net/en/list)GO
