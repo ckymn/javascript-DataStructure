@@ -5,10 +5,6 @@ class Node {
   }
 }
 
-//head: ilk node degerini gosterir suanda null olarak ayarlanmistir.
-//tail: son node degerini gosterir suanda null olarak ayarlanmistir.
-//lenght: listenin uzunlugunu gosterir baslangic 0'a ayarlanmistir.
-
 class LinkedList {
   constructor() {
     this.head = null;
@@ -18,20 +14,18 @@ class LinkedList {
 
   //Listenin sonuna eleman ekleme islemi "push"
   push(value) {
-    //node nesnesini olsturduk
-    const node = new Node(value);
-    //eger head kismina deger atanmamis ise deger atamasi yapiliyor
+    let node = new Node(value);
+   
     if (!this.head) {
       this.head = node;
       this.tail = node;
     }
-    //eger baslangicta head varsa tail'in referansini bir sonraki node'u gostericek
-    //daha sonra olusan yeni node'un next yeni olusacak node'u gosterir ve dongu boyle devam eder
     else {
-      this.tail = node;
       this.tail.next = node;
+      this.tail = node;
     }
     this.length++;
+    return this;
   }
 
   //Listenin sonundan eleman silme islemi "pop", burda'ki dikkat edilecek yer dizi olmadigi icin son elemana kadar tum node'larin uzerinden gecmesidir. Ve diger onemli nokta son  degerimiz "tail" oldugu icin tail degerini referans alabiliriz
