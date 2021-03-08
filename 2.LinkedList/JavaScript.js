@@ -20,8 +20,9 @@ class LinkedList {
       this.tail = node;
     }
     else {
-      this.tail.next = node;
+      let iter = this.tail;
       this.tail = node;
+      this.tail.next = iter;
     }
     this.length++;
     return this;
