@@ -4,7 +4,6 @@ class Node {
     this.next = next;
   }
 }
-
 class LinkedList {
   constructor() {
     this.head = null;
@@ -15,7 +14,7 @@ class LinkedList {
   //Listenin sonuna eleman ekleme islemi "push"
   push(value) {
     let node = new Node(value);
-   
+    
     if (!this.head) {
       this.head = node;
       this.tail = node;
@@ -145,21 +144,18 @@ class LinkedList {
   
   //Listeyi ters cevirme islemi
   reverse(){
-      let currentNode = this.head;
-      let prevNode = null;
-      let nextNode = null;
+    //aslinda bizim liste duzeni soyle olacak eski (head===null) , yeni (head===tail);
+      let prev = null;
+      let next = null;
       
-      while(currentNode){
-        nextNode = currentNode.next;
-        currentNode.next = prevNode;
-
-        prevNode = currentNode;
-        currentNode = nextNode
+      while(this.head != null){
+        next = this.head.next;//yeni olusturacagimiz head'i kaybetmemek icin this.head.next baglantisini next'e atiyoruz
+        this.head = prev; //sonra (head===null) yapiyoruz.
+        
+        prev = this.head;
+        this.head = next; 
       }
-
-      this.tail = this.head;
-      this.head = prevNode;
-      return this;
+      return prev;
   }
   //Listedeki son degei bul
   getLast() {
