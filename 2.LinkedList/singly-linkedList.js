@@ -14,12 +14,11 @@ class LinkedList {
   //Listenin sonuna eleman ekleme islemi "push"
   push(value) {
     let node = new Node(value);
-    
+
     if (!this.head) {
       this.head = node;
       this.tail = node;
-    }
-    else {
+    } else {
       this.tail.next = node;
       this.tail = node;
     }
@@ -106,7 +105,7 @@ class LinkedList {
 
   //Listeye Deger Ekleme
   insert(index, value) {
-    if (index < 0 || index > this.lenght) return null;
+    if (index < 0 || index > this.lenght) return undefined;
     //eger verilen index degeri son elemana denk geliyorsa push metodu kullanilmali
     if (index === this.length) {
       this.push(value);
@@ -128,36 +127,32 @@ class LinkedList {
     return true;
   }
 
-  //Listeye Sirali Deger Ekleme
-
-  
-  //Listeden belli bir degeri silme islemi 
-  remove(index){
-      if(index < 0 || index >= this.length) return null;
-      if(index === 0) return this.shift();
-      if(index === this.length - 1) return this.pop();
-      let prev = this.get(index-1);
-      let removed = prev.next;
-      prev.next = removed.next;
-      this.length--;
-      return removed;
-
+  //Listeden belli bir degeri silme islemi
+  remove(index) {
+    if (index < 0 || index >= this.length) return null;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+    let prev = this.get(index - 1);
+    let removed = prev.next;
+    prev.next = removed.next;
+    this.length--;
+    return removed;
   }
-  
+
   //Listeyi ters cevirme islemi
-  reverse(){
+  reverse() {
     //aslinda bizim liste duzeni soyle olacak eski (head===null) , yeni (head===tail);
-      let prev = null;
-      let next = null;
-      
-      while(this.head != null){
-        next = this.head.next;//yeni olusturacagimiz head'i kaybetmemek icin this.head.next baglantisini next'e atiyoruz
-        this.head = prev; //sonra (head===null) yapiyoruz.
-        
-        prev = this.head;
-        this.head = next; 
-      }
-      return prev;
+    let prev = null;
+    let next = null;
+
+    while (this.head != null) {
+      next = this.head.next; //yeni olusturacagimiz head'i kaybetmemek icin this.head.next baglantisini next'e atiyoruz
+      this.head = prev; //sonra (head===null) yapiyoruz.
+
+      prev = this.head;
+      this.head = next;
+    }
+    return prev;
   }
   //Listedeki son degei bul
   getLast() {
@@ -192,6 +187,16 @@ class LinkedList {
       currentNode = currentNode.next;
     }
     return count;
+  }
+
+  iterator() {
+    if (this.head === null) return null;
+    let list = this.head;
+    while (list) {
+      console.log(list.node);
+      if (list.next) console.log("->");
+      list = list.next;
+    }
   }
 }
 
