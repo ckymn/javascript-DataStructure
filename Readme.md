@@ -4,7 +4,7 @@
 * `B` [Linked List](src/data-structures/linked-list)
 * `B` [Doubly Linked List](src/data-structures/doubly-linked-list)
 * `B` [Circular Linked List](src/data-structures/doubly-linked-list)
-* `B` [Abstract Data Types]
+* `B` [Abstract Data Types](src/data-structures/doubly-linked-list)
    * `A`[Stack with Array](src/data-structures/stack)
    * `A`[Stack with LinkedList](src/data-structures/stack)
    * `A` [Queue](src/data-structures/queue)
