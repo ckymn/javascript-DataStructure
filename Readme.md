@@ -1,5 +1,6 @@
 # JS-DataStructure 🚀
 
+* `B` [Array](src/data-structures/linked-list)
 * `B` [Linked List](src/data-structures/linked-list)
 * `B` [Doubly Linked List](src/data-structures/doubly-linked-list)
 * `B` [Circular Linked List](src/data-structures/doubly-linked-list)
