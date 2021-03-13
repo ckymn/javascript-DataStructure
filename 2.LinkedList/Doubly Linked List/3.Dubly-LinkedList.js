@@ -17,7 +17,7 @@ class DoubleLinkedList {
     const node = new Node(value);
     let current = this.head;
 
-    if (!this.head) {
+    if (this.head === null) {
       this.head = node;
       this.tail = node;
     } else {
@@ -53,7 +53,7 @@ class DoubleLinkedList {
       node.prev = this.tail;
       this.tail = node; // yeni tail degeri
     }
-    // aray dugum ekleme
+    // araya dugum ekleme
     else {
       const current = this.get(index);
       let prev = current.prev;

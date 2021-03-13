@@ -1,6 +1,6 @@
 # 🚀JS-DataStructure
 
-Created with CodeSandbox
+Created with JavaScript
 
 ![](https://static.javatpoint.com/ds/images/ds-introduction.png)
 
@@ -13,6 +13,8 @@ Created with CodeSandbox
      
    2. ADT
      * Stack
+        `Array`
+        `Linked List`
      * Queue
      
    3.Trees
