@@ -30,7 +30,7 @@ class Stack extends Array {
   }
 }
 
-const list = new Stack(1, 2, 3);
+const list = new Stack();
 list._push(100);
 list._push(200);
 

@@ -14,31 +14,44 @@ class StackLinkedList {
 
   // budaki _push unshift gibi davranir.
   _push(value) {
-    let newNode = new Node(value);
+    const newNode = new Node(value);
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
     } else {
       let temp = this.head;
-      this.head = newNode; 
-      this.head.next = temp; // head surekli basa aliniyor.
+      newNode.next = temp;
+      this.head = newNode;
     }
     return ++this.length;
   }
 
   _pop() {
     if (!this.head) throw new Error("Nothing to pop!");
+
     let temp = this.head;
-    if (this.head === this.tail) 
-        this.tail = null;
+
+    if (this.head === this.tail) this.tail = null;
     this.head = this.head.next; // deger null'a esitleniyor.
+
     this.length--;
     return temp.value;
   }
 
   _peeks() {
     if (this.length === 0) throw new Error("Stack is Empty!");
-    return this[this.length - 1];
+
+    return this.head.value;
+  }
+
+  _toArray() {
+    let arr = [];
+    while (this.head) {
+      arr.push(this.head.value);
+      this.head = this.head.next;
+    }
+
+    return arr;
   }
 
   _isEmpty() {
@@ -46,6 +59,7 @@ class StackLinkedList {
   }
 
   _clear() {
+    this.head = null;
     this.length = 0;
   }
 
@@ -54,11 +68,15 @@ class StackLinkedList {
   }
 }
 
-const list = new Stack(1, 2, 3);
+const list = new StackLinkedList();
 list._push(100);
 list._push(200);
+list._push(300);
+list._push(400);
 
 console.log(list);
 console.log(list._peeks());
-console.log(list._size());
 console.log(list._isEmpty());
+console.log(list._size());
+console.log(list._pop());
+console.log(list._toArray());
