@@ -1,33 +1,41 @@
-class Stack extends Array {
-  constructor(...values) {
-    super(...values);
+class Stack {
+  constructor() {
+    this.items = [];
+    this.count = 0;
   }
 
   _push(value) {
-    // if (this.length === 0) throw new Error("Nothing to push!")
-    this.push(value);
+    this.items[this.count] = value;
+    console.log(`${value} added to ${this.count}`);
+    this.count++;
+
+    return this.count - 1;
   }
 
   _pop() {
-    // if (this.length === 0) throw new Error("Nothing to pop!");
-    this.pop();
+    if(this.count === 0) return undefined;
+    let deleteItem = this.items[this.count - 1 ];
+    console.log(`${deleteItem} removed`);  
+    this.count--;
+  
+    return deleteItem;
   }
 
   _peeks(){
       if(this.length === 0) throw new Error("Stack is Empty!");
-      return this[this.length - 1];
+      return this.items[this.length - 1];
   }
 
   _isEmpty(){
-      return this.length === 0;
+      return this.count === 0;
   }
 
   _clear(){
-    this.length = 0;
+    this.count = 0;
   }
 
   _size(){
-      return this.length;
+      return this.count;
   }
 }
 
