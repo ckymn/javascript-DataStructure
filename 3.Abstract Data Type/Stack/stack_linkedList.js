@@ -28,16 +28,18 @@ class StackLinkedList {
 
   // Listenin basindan eleman cikarir.
   _pop() {
-    if (!this.head) throw new Error("Nothing to pop!");
-
     let temp = this.head;
+    
+    if(temp){
+      let elm = temp.value;
+      temp = temp.next;
+      this.head = temp;
 
-    if (this.head === this.tail) 
-      this.tail = null;
-    this.head = this.head.next;
+      this.length--;
+      return elm;
+    }
 
-    this.length--;
-    return temp.value;
+    return null;
   }
 
   // Listenin basindaki elemani doner 
