@@ -12,7 +12,7 @@ class StackLinkedList {
     this.length = 0;
   }
 
-  // budaki _push unshift gibi davranir.
+  // Listenin basina eleman ekler
   _push(value) {
     const newNode = new Node(value);
     if (!this.head) {
@@ -26,18 +26,21 @@ class StackLinkedList {
     return ++this.length;
   }
 
+  // Listenin basindan eleman cikarir.
   _pop() {
     if (!this.head) throw new Error("Nothing to pop!");
 
     let temp = this.head;
 
-    if (this.head === this.tail) this.tail = null;
-    this.head = this.head.next; // deger null'a esitleniyor.
+    if (this.head === this.tail) 
+      this.tail = null;
+    this.head = this.head.next;
 
     this.length--;
     return temp.value;
   }
 
+  // Listenin basindaki elemani doner 
   _peeks() {
     if (this.length === 0) throw new Error("Stack is Empty!");
 

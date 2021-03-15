@@ -7,11 +7,10 @@
 * `B` [Abstract Data Types](src/data-structures/doubly-linked-list)
    * `A`[Stack with Array](src/data-structures/stack)
    * `A`[Stack with LinkedList](src/data-structures/stack)
-   * `A` [Queue](src/data-structures/queue)
+   * `A` [Queue with Array](src/data-structures/queue)
+   * `A` [Queue with LinkedList](src/data-structures/queue)
 * `B` [Hash Table](src/data-structures/hash-table)
 * `B` [Heap](src/data-structures/heap) - max and min heap versions
-* `B` [Priority Queue](src/data-structures/priority-queue)
-* `A` [Trie](src/data-structures/trie)
 * `A` [Tree](src/data-structures/tree)
   * `A` [Binary Search Tree](src/data-structures/tree/binary-search-tree)
   * `A` [AVL Tree](src/data-structures/tree/avl-tree)

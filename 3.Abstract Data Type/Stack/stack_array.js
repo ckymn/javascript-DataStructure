@@ -4,11 +4,12 @@ class Stack extends Array {
   }
 
   _push(value) {
+    // if (this.length === 0) throw new Error("Nothing to push!")
     this.push(value);
   }
 
   _pop() {
-    if (this.length === 0) throw new Error("Nothing to pop!");
+    // if (this.length === 0) throw new Error("Nothing to pop!");
     this.pop();
   }
 
@@ -33,8 +34,8 @@ class Stack extends Array {
 const list = new Stack();
 list._push(100);
 list._push(200);
-
+list._push(300);
 console.log(list);
-console.log(list._peeks());
-console.log(list._size());
-console.log(list._isEmpty());
+
+list._pop();
+console.log(list);

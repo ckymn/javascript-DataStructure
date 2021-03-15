@@ -4,7 +4,6 @@ class Node {
     this.next = next;
   }
 }
-
 class QueueLinkedList {
   constructor() {
     this.head = null;
@@ -12,7 +11,7 @@ class QueueLinkedList {
     this.length = 0;
   }
 
-  //listenin basina dugum ekleme
+  // Listenin sonuna dugum ekleme 
   _enqueue(value) {
     const newNode = new Node(value);
 
@@ -27,7 +26,7 @@ class QueueLinkedList {
     this.length++;
   }
 
-  // listenin sonundan dugum cikarma
+  // listenin basindan dugum cikarma
   _dequeue() {
     if (!this.head) return null;
 

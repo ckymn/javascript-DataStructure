@@ -3,14 +3,17 @@ class Queue{
     this.items = [];
   }
 
-  // listeinin sounun eleman ekler.
+  // Listeinin sounun eleman ekler.
   _enqueue(value) {
+    if(!this.items.length === null)
+      throw new Error("Nothing to enqueue")
     this.items.push(value);
   }
 
-  // listenin basindan bir eleman kaldirir.
+  // Listenin basindan bir eleman kaldirir.
   _dequeue() {
-    if (this.length === 0) throw new Error("Nothing to queue!");
+    if (this.length === 0) 
+      throw new Error("Nothing to queue!");
     this.items.shift();
   }
 
