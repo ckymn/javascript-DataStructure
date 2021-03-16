@@ -18,7 +18,7 @@ class Stack {
     console.log(`${deleteItem} removed`);  
     this.count--;
   
-    return deleteItem;
+    return deleteItem;  
   }
 
   _peeks(){
