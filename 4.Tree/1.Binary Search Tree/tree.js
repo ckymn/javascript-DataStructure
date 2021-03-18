@@ -13,31 +13,28 @@ class BST {
 
   // ekleme - recursive
   insert(data) {
-    let current = this.root;
+    const newNode = new Node(data);
     // Agac bos ise
     if (!this.root) {
-      const newNode = new Node(data);
       this.root = newNode;
       return this;
     }
-    // Agac dolu ise
-    const searchTree = (current) => {
-      if (data < current.value) {// sol'a gidecek
-        if (current.left === null){// sol bos ise dugum ekleyin
-          current.left = new Node(data);
-          return this;
-        }return searchTree(current.left);// sol bos degilse recursive.
+
+    let current = this.root;
+
+    const addSide = (str) => {
+      if(!current[str]){
+        current[str] = newNode;
+        return this;
       }
-      else if(data > current.value){// sag'a gidecek
-        if (current.right === null){// sol bos ise dugum ekleyin
-          current.right = new Node(data);
-          return this;
-        }return searchTree(current.right);// sag bos degilse recursive.
-      }
-      else 
-        return null;
-    };
-    return searchTree(current);
+      current = current[str];
+    }
+
+    while(true){
+      if(data === current.value) return this;
+      if(data < current.value) addSide("left"); 
+      if(data > current.value) addSide("right");
+    }
   }
   // en kucuk node bulma
   findMin(){
@@ -116,6 +113,54 @@ class BST {
     }
     this.root = removeNode(this.root, data);
   }
+
+  //okuma
+  /**
+   * 1.Infix(inOrder) : Left->Node->Right || Right->Node->Left
+   * 2.Prefix(preOrder): Node->Left-Right || Node->Right->Left
+   * 3.Postfix(postOrder): Left->Right->Node || Right->Left->Node
+   */
+  inOrder(){
+    let arr = [];
+    let current = this.root;
+    
+    let traverse = (node) =>{
+      if(node.left) traverse(node.left);
+      arr.push(node.value);
+      if(node.right) traverse(node.right);
+    }
+
+    traverse(current);
+    return arr;
+  }
+
+  postOrder(){
+    let arr =  [];
+    let current = this.root;
+
+    let traverse = (node) =>{
+      if(node.left) traverse(node.left);
+      if(node.right) traverse(node.right);
+      arr.push(node.value);
+    }
+
+    traverse(current);
+    return arr;
+  }
+
+  preOrder(){
+    let arr = [];
+    let current = this.root;
+
+    let traverse = (node) =>{
+      arr.push(node.value);
+      if(node.left) traverse(node.left);
+      if(node.right) traverse(node.right);
+    }
+
+    traverse(current);
+    return arr;
+  }
 }
 
 let bst = new BST();
@@ -126,9 +171,5 @@ bst.insert(6);
 bst.insert(1);
 bst.insert(3);
 bst.insert(5);
-bst.insert(7);
-bst.remove(4);
-console.log(bst.findMin());
-console.log(bst.findMax());
-console.log(bst.isPresent(4));
-console.log(bst);
+bst.insert(7); 
+console.log(bst.postOrder());
