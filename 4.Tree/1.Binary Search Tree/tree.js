@@ -39,6 +39,7 @@ class BST {
   // en kucuk node bulma
   findMin(){
     let current = this.root;
+    // en kucuk deger herzaman sol'a yazilir
     while(current.left !== null)
       current = current.left;
     return current.value;
@@ -47,6 +48,7 @@ class BST {
   // en buyuk node bulma
   findMax(){
     let current = this.root;
+    // en buyuk deger herzaman sag'a yazilir
     while(current.right !== null)
       current = current.right;
     return current.value;
@@ -66,13 +68,21 @@ class BST {
   // mevcut olup olmadigi
   isPresent(data){
     let current = this.root;
-    while(current){
-      if(data === current.value) 
-        return true;
-      if(data < current.data)
-        current = current.left;
-      current = current.right;
-    }
+    if(current == null) return -1;
+    if(data == current.value) return 1;
+    if(this.isPresent(data < current.value)==1) return 1;
+    if(this.isPresent(data > current.value)==1) return 1;
+    // while(current){
+    //   if(data === current.value) 
+    //     return true;
+    //   if(data < current.data){
+    //     current = current.left;
+    //     return true;
+    //   }else{
+    //     current = current.right;
+    //     return true;
+    //   }
+    // }
     return false;
   }
 
@@ -168,4 +178,4 @@ let bst = new BST();
 bst.insert(4);
 bst.insert(2);
 console.log(bst.postOrder());
-console.log(bst.isPresent(2))
+console.log(bst.isPresent());
