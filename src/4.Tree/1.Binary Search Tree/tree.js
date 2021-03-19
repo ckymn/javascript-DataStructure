@@ -36,23 +36,26 @@ class BST {
       if(data > current.value) addSide("right");
     }
   }
+
   // en kucuk node bulma
-  findMin(){
-    let current = this.root;
-    // en kucuk deger herzaman sol'a yazilir
-    while(current.left !== null)
-      current = current.left;
-    return current.value;
+  findMin(node = this.root){
+    if(node){
+      while(node && node.left !==null)
+        node = node.left;
+      return node.value;
+    }
+    return null;
   }
 
   // en buyuk node bulma
-  findMax(){
-    let current = this.root;
-    // en buyuk deger herzaman sag'a yazilir
-    while(current.right !== null)
-      current = current.right;
-    return current.value;
+  findMax(node = this.root){
+    if(node){
+      while(node && node.right !== null)
+        node = node.right;
+      return node.value;
   }
+  return null;
+}
 
   // node bulma
   find(data){
@@ -68,54 +71,57 @@ class BST {
   // mevcut olup olmadigi
   isPresent(data){
     let current = this.root;
-    if(current == null) return -1;
-    if(data == current.value) return 1;
-    if(this.isPresent(data < current.value)==1) return 1;
-    if(this.isPresent(data > current.value)==1) return 1;
-    // while(current){
-    //   if(data === current.value) 
-    //     return true;
-    //   if(data < current.data){
-    //     current = current.left;
-    //     return true;
-    //   }else{
-    //     current = current.right;
-    //     return true;
-    //   }
-    // }
+    while(current){
+      if(data === current.value) 
+        return true;
+      if(data < current.data){
+        current = current.left;
+        return true;
+      }else{
+        current = current.right;
+        return true;
+      }
+    }
     return false;
   }
 
-  //silme - recursive
+  //silme
+  /**
+   * 1.Leaf(yaprak) silme islemi : burda en son eleman'in sag ve solunu kontrol eder
+   * 2.Root(kok node) sime islemi : burda ya soldaki elemanin en "buyugu" yada sagdaki elemanin en "kucugunu" getirilmelidir.
+   */
   remove(data){
     const removeNode = (node, data) => {
+      // agac bos ise
       if(node === null)
         return null;
-      // kaldirilacak eleman soldan secilir
-      else if(data < node.data){
-        node.left = removeNode(node.left , data);
-        return node;
-      }
-      // 
-      else if(data === node.data){
+
+      // aradigimiz root ise
+      else if(data === node.value){
         //dugumde cocuk yok
         if(node.left === null && node.right === null)
           return null;
-        //dugumde sol cocuk yok
-        if(node.left === null)
-          return node.right;
-        //dugumde sag cocuk yok
-        if(node.right === null)
-          return node.left;
-        //dugumde iki cocuk'ta varsa
-        let temp = node.right;
-        while(temp.left !== null)
-          temp = temp.left;
-        node.data = temp.data;
-        node.right = removeNode(node.right, temp.data);
+        // root varsa ve sagda eleman varsa sag'dakilerin en kucugunu donder
+        if(node.right !== null){
+          node.value = this.findMin(node.right);
+          node.right = removeNode(node.right, this.findMin(node.right));
+          return node;
+        }
+        // root varsa ve sagda eleman varsa sol'dakilerin en buyugunu donder
+        if(node.left !== null){
+          node.value = this.findMax(node.left);
+          node.left = removeNode(node.left, this.findMax(node.left));
+          return node;
+        }
+      } 
+
+      // aradigimiz deger root degilse sol'a bak
+      else if(data < node.value){
+        node.left = removeNode(node.left , data);
         return node;
       }
-      // kaldirilacak eleman sagdan secilir
+
+      // aradigimiz deger root degilse sag'a bak
       else{
         node.right = removeNode(node.right, data);
         return node;
@@ -176,6 +182,10 @@ class BST {
 let bst = new BST();
 
 bst.insert(4);
-bst.insert(2);
-console.log(bst.postOrder());
-console.log(bst.isPresent());
+bst.insert(32);
+bst.insert(12);
+bst.insert(11);
+bst.insert(22);
+bst.remove(4);
+console.log(bst.inOrder());
+console.log(bst.findMin());
