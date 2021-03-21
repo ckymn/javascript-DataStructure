@@ -15,18 +15,17 @@ class DoubleLinkedList {
 
   push(value) {
     const node = new Node(value);
-    let current = this.head;
 
     if (this.head === null) {
       this.head = node;
       this.tail = node;
-    } else {
-      // burda tail degerini bozmamak icin get ile son elemani cagiralim
-      current = this.get(this.length - 1);
-      current.next = node;
+    } 
+    else {
+      let current = this.tail;
+      this.tail.next = node;
       node.prev = current;
+      this.tail = node;
     }
-    this.tail = node;
 
     this.length++;
     return this;
@@ -36,32 +35,36 @@ class DoubleLinkedList {
     if (index < 0 || index > this.length) return undefined;
 
     const node = new Node(value);
+    let current = this.head;
 
+    // basa dugum ekleme
     if (index === 0) {
-      // basa dugum ekleme
-      if (this.head) {
-        node.next = this.head;
-        this.head.prev = node;
-      } else {
+      if(!this.head){
+        this.head = node;
         this.tail = node;
       }
-      this.head = node;
+      else{
+        node.next = current;
+        this.head.prev = node;
+        this.head = node;
+      }
     }
     // sona dugum ekleme
-    else if (index === this.size()) {
-      this.tail.next = node;
-      node.prev = this.tail;
+    else if (index === this.length) {
+      current = this.tail;
+      current.next = node;
+      node.prev = current;
       this.tail = node; // yeni tail degeri
     }
     // araya dugum ekleme
     else {
-      const current = this.get(index);
+      current = this.indexOf(index);
       let prev = current.prev;
 
       prev.next = node;
-      current.prev = node;
       node.prev = prev;
       node.next = current;
+      current.prev = node;
     }
 
     this.length++;
@@ -75,7 +78,7 @@ class DoubleLinkedList {
     // bastan deger sil
     if(index === 0){
         this.head = removed.next;
-        if(this.size() === 1){
+        if(this.length === 1){
             this.tail = null;
         }
         else{
@@ -83,14 +86,14 @@ class DoubleLinkedList {
         }
     }
     // sondan deger sil
-    else if(index === this.size() -1){
+    else if(index === this.length -1){
         removed = this.tail;
         this.tail = removed.prev;
         this.tail.next = null;
     }
     // ortadan deger sil
     else{
-        removed = this.get(index);
+        removed = this.indexOf(index);
         const previous = removed.prev;
         const next = removed.next;
 
@@ -115,7 +118,9 @@ class DoubleLinkedList {
           current = next;
       }
   }
-  get(index) {
+
+
+  indexOf(index) {
     if (index < 0 || index >= this.length) return undefined;
 
     let counter = 0;
@@ -124,7 +129,7 @@ class DoubleLinkedList {
       current = current.next;
       counter++;
     }
-    return current;
+    return curret;
   }
 
   size() {
@@ -136,6 +141,7 @@ class DoubleLinkedList {
     }
     return counter;
   }
+
   // Listenin value degerlerini string halde gosterir
   toString() {
     if (!this.length) return "";
@@ -148,6 +154,8 @@ class DoubleLinkedList {
     }
     return str;
   }
+
+
   // Listeyi gosterir.
   print() {
     let arr = [];
@@ -163,18 +171,12 @@ class DoubleLinkedList {
   }
 }
 
+
 let list = new DoubleLinkedList();
 list.push(10);
 list.push(20);
 list.push(30);
-
-// list.insert(100, list.size());
-
-// list.remove(3);
-
-// console.log(list.toString());
-// list.reverse();
-// console.log(list.toString());
-console.log(list.size());
-
+list.insert(100, list.size());
+console.log(list.toString());
+list.remove(2);
 list.print();
