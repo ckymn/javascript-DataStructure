@@ -106,17 +106,19 @@ class DoubleLinkedList {
   }
 
   reverse(){
-      let current = this.head;
-      this.head = this.tail;
-      this.tail = current;
+    if(!this.head) return undefined;
 
-      while(current != null){
-          const {prev, next} = current // null , null
+    // bas ve tail kismini degistiriyoruz
+    let current = this.head;
+    this.head = this.tail;
+    this.tail = current;
 
-          current.prev = next;
-          current.next = prev;
-          current = next;
-      }
+    while(current != null){
+        // let {prev, next} = current
+        current.prev = current.next;
+        current.next = current.prev;
+        current = current.next;
+    }
   }
 
 
@@ -129,7 +131,7 @@ class DoubleLinkedList {
       current = current.next;
       counter++;
     }
-    return curret;
+    return current;
   }
 
   size() {
@@ -145,10 +147,11 @@ class DoubleLinkedList {
   // Listenin value degerlerini string halde gosterir
   toString() {
     if (!this.length) return "";
+
     let str = `${this.head.value}`;
     let current = this.head;
-
-    for (let i = 0; i < this.length - 1; i++) {
+    console.log(current.value);
+    while (current) {
       current = current.next;
       str += `-> ${current.value}`;
     }
@@ -176,7 +179,6 @@ let list = new DoubleLinkedList();
 list.push(10);
 list.push(20);
 list.push(30);
-list.insert(100, list.size());
+list.reverse();
 console.log(list.toString());
-list.remove(2);
-list.print();
+
