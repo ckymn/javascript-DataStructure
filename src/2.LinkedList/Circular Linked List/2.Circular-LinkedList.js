@@ -15,15 +15,19 @@ class CircularLinkedList {
 
   push(value) {
     const node = new Node(value);
-    let current = this.head;
 
     if (!this.head) {
       this.head = node;
+      this.tail = node;
     } else {
-      current = this.get(this.length - 1);
-      current.next = node;
+      node.prev = this.tail;
+      this.tail.next = node;
+      this.tail = node;
     }
-    node.next = this.head; //circular basa baglaniyor.
+    //basi sona baglama
+    this.head.prev = this.tail;
+    //sonu basa baglama
+    this.tail.next = this.head;
 
     this.length++;
     return this;
@@ -33,66 +37,98 @@ class CircularLinkedList {
     if (index < 0 || index > this.length) return undefined;
 
     const node = new Node(value);
-
+    let current = this.head;
+    // basa dugum ekleme
     if (index === 0) {
       node.next = this.head;
-
-      // basa dugum ekleme
-      if (this.length === 0) {
-        node.next = node;
+      if (!this.head) {
+        this.head = node;
+        this.tail = node;
       } else {
-        const last = this.get(this.length - 1);
-        last.next = node;
+        node.next = current;
+        current.prev = node;
+        this.head = node;
       }
-      this.head = node;
     }
-    // aray dugum ekleme
+    // sona dugum ekleme
+    else if(index === this.length){
+      current  = this.tail;
+      current.next = node;
+      node.prev = current;
+      this.tail = node;
+    }
+    // araya dugum ekleme
     else {
-      const previous = this.get(index);
-      node.next = previous.next;
-      previous.next = node;
+      let onceki = this.indexOf(index - 1);
+      let sonraki = onceki.next;
+      onceki.next = node;
+      node.prev = onceki;
+      node.next = sonraki;
+      sonraki.prev = node;
     }
+    // basi sona ekliyoruz
+    this.head.prev = this.tail;
+    // sonu basa ekliyoruz
+    this.tail.next = this.head;
 
     this.length++;
     return true;
   }
-  remove(index) {
-    if (index < 0 || index >= this.length) return null;
-    let removed = this.head;
 
-    // bastan deger sil
-    if (index === 0) {
-      if (this.length === 1) {
-        this.head = null;
-      } else {
-        const last = this.get(this.length - 1);
-        this.head = this.head.next;
-        last.next = this.head; // dikkat!
+  remove(index=0){
+    if(index > -1 && index < this.length){
+      let current = this.head;
+      let count = 0;
+      let previous;
+
+      //Removing first item
+      if(index === 0){
+        this.head = current.next;
+
+        //if there is only one item, update tail //NEW
+        if(length === 1){
+          this.tail = null;
+        }else{
+          this.head.prev = null;
+        }
+      }else if(index === this.length - 1){
+        current = this.tail;
+        this.tail.next = null;
+        this.tail = current.prev;
+      }else{
+        while(count !== index){
+          previous = current;
+          current = current.next;
+          count++;
+        }
+        previous.next = current.next; 
+        current.next.prev = previous;
       }
-    }
-    else {
-      let previous = this.get(index -1);
-      removed = previous.next;
-      previous.next = removed.next;
-    }
+      
+      if(this.head){
+        this.head.prev = this.tail;
+        this.tail.next = this.head;
+      }
 
     this.length--;
-    return removed;
+    return current.value;
   }
+}
+
   reverse() {
     let current = this.head;
     this.head = this.tail;
     this.tail = current;
 
     while (current != null) {
-      const { prev, next } = current; // null , null
+      const { prev, next } = current;
 
       current.prev = next;
       current.next = prev;
       current = next;
     }
   }
-  get(index) {
+  indexOf(index) {
     if (index < 0 || index >= this.length) return undefined;
 
     let counter = 0;
@@ -123,7 +159,7 @@ class CircularLinkedList {
       current = current.next;
       str += `-> ${current.value}`;
     }
-    return str;
+    console.log(str);
   }
   // Listeyi gosterir.
   print() {
@@ -144,9 +180,7 @@ let list = new CircularLinkedList();
 list.push(1);
 list.push(2);
 list.push(3);
-list.insert(0, 0);
-list.insert(100, list.size()-1);
-
-list.remove(0);
+list.remove(2);
 
 list.print();
+list.toString();
