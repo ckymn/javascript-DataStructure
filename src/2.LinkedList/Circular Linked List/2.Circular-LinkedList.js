@@ -33,7 +33,7 @@ class CircularLinkedList {
     return this;
   }
 
-  insert(value, index=0) {
+  insert(value, index = 0) {
     if (index < 0 || index > this.length) return undefined;
 
     const node = new Node(value);
@@ -51,8 +51,8 @@ class CircularLinkedList {
       }
     }
     // sona dugum ekleme
-    else if(index === this.length){
-      current  = this.tail;
+    else if (index === this.length) {
+      current = this.tail;
       current.next = node;
       node.prev = current;
       this.tail = node;
@@ -75,45 +75,45 @@ class CircularLinkedList {
     return true;
   }
 
-  remove(index=0){
-    if(index > -1 && index < this.length){
+  remove(index = 0) {
+    if (index > -1 && index < this.length) {
       let current = this.head;
       let count = 0;
       let previous;
 
       //Removing first item
-      if(index === 0){
+      if (index === 0) {
         this.head = current.next;
 
         //if there is only one item, update tail //NEW
-        if(length === 1){
+        if (length === 1) {
           this.tail = null;
-        }else{
+        } else {
           this.head.prev = null;
         }
-      }else if(index === this.length - 1){
+      } else if (index === this.length - 1) {
         current = this.tail;
         this.tail.next = null;
         this.tail = current.prev;
-      }else{
-        while(count !== index){
+      } else {
+        while (count !== index) {
           previous = current;
           current = current.next;
           count++;
         }
-        previous.next = current.next; 
+        previous.next = current;
         current.next.prev = previous;
       }
-      
-      if(this.head){
+
+      if (this.head) {
         this.head.prev = this.tail;
         this.tail.next = this.head;
       }
 
-    this.length--;
-    return current.value;
+      this.length--;
+      return current.value;
+    }
   }
-}
 
   reverse() {
     let current = this.head;
@@ -128,6 +128,7 @@ class CircularLinkedList {
       current = next;
     }
   }
+
   indexOf(index) {
     if (index < 0 || index >= this.length) return undefined;
 
@@ -149,6 +150,7 @@ class CircularLinkedList {
     }
     return counter;
   }
+
   // Listenin value degerlerini string halde gosterir
   toString() {
     if (!this.length) return "";
@@ -180,7 +182,8 @@ let list = new CircularLinkedList();
 list.push(1);
 list.push(2);
 list.push(3);
-list.remove(2);
+// list.remove(2);
+// list.reverse();
 
 list.print();
 list.toString();
