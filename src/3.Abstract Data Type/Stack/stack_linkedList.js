@@ -80,8 +80,3 @@ list._push(300);
 list._push(400);
 
 console.log(list);
-console.log(list._peeks());
-console.log(list._isEmpty());
-console.log(list._size());
-console.log(list._pop());
-console.log(list._toArray());

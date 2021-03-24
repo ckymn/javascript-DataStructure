@@ -59,5 +59,5 @@ list._enqueue(20);
 list._enqueue(30);
 list._enqueue(40);
 list._dequeue();
+
 console.log(list);
-console.log(list._toArray());
