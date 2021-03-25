@@ -42,13 +42,48 @@ class QueueLinkedList {
     return temp.value;
   }
 
-  _toArray() {
+  // Ilk elemani donmek
+  _front = () => {
+    if(this.head)
+      return this.head.value;
+    
+    return null;
+  }
+
+  // Son Elemani donmek
+  _rear = () => {
+    let current = this.head;
+
+    if(current === null)
+      return null;
+
+    while(current.next){
+      current = current.next;
+    }
+
+    return current.value;
+  }
+
+  _toArray = () => {
     let arr = [];
     while (this.head) {
       arr.push(this.head.value);
       this.head = this.head.next;
     }
     return arr;
+  }
+
+  _isEmpty = () => {
+    return this.length === 0;
+  }
+
+  _size = () => {
+    return this.length;
+  }
+
+  _clear = () => {
+    this.head = null;
+    this.length = 0;
   }
 }
 
