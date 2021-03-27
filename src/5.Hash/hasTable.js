@@ -1,25 +1,30 @@
  
 class HashTable {
     constructor() {
-      this.table  = new Array(137);
-      this.values = [];
+      this.table  = new Array(137);// alanimiz
+      this.values = []; // new alan
     }
     
-    // Defining the hashing function which allows a sting to be used as a key
+    // Bir HashTable anahtar(H) olarak kullanılmasına izin veren karma işlevin tanımlanması :[ saklanacak  yer = H % 137 ]
     hash(string) {
       const H   = 37;
       let total = 0;
   
+      // Degerimiz string oldugu icin ASCII kodunu ile islem yapilir.
       for (var i = 0; i < string.length; i++) {
         total += H * total + string.charCodeAt(i);
       }
+      //hashing 
       total %= this.table.length;
+      
       if (total < 1) {
         this.table.length -1
       }
+      
+      console.log("total : ", total, "parseTotal :",parseInt(total));
       return parseInt(total);
     }
-  
+    //print
     showDistro() {
       for (const key in this.table) {
         if(this.table[key] !== undefined) {
@@ -27,19 +32,19 @@ class HashTable {
         }
       }
     }
-  
+    //hashing - guncelleme
     put(data) {
       const pos = this.hash(data);
       this.table[pos] = data;
     }
-  
+    //hashing - arama
     get(key) {
       return this.table[this.hash(key)];
     }
   }
   
-  // HashTable with Build Chains technique of collision-resolution.
-  class HashTableChains extends HashTable {
+  // HashTable 'da çakışmaya(collusıon) karşı yapılan cozumlerden biri : [ Build Chains ] 
+  class HashTableBuildChains extends HashTable {
     constructor() {
       super();
       this.buildChains();
@@ -86,8 +91,8 @@ class HashTable {
     }
   }
   
-  // HashTable with Linear Probing technique of collision-resolution.
-  class HashTableLinearP extends HashTable {
+  // HashTable 'da çakışmaya(collusıon) karşı yapılan cozumlerden biri : [ Linear Probing ]
+  class HashTableLinearProbing extends HashTable {
     constructor() {
       super();
       this.values = new Array();
@@ -127,3 +132,8 @@ class HashTable {
       }
     }
   }
+
+  let list = new HashTable();
+  list.hash("m");
+  list.showDistro();
+  console.log(list);
