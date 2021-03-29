@@ -1,4 +1,4 @@
-// Lineer Porbing
+// Linear Porbing
 
 class HashTable {
     constructor(size = 100) {
@@ -18,6 +18,7 @@ class HashTable {
       if(!this.values[index].hasOwnProperty(key))
         this.length++;
       this.values[index][key] = value;
+
     }
 
     search(key){
@@ -55,5 +56,6 @@ ht.add("Italy","50");
 ht.add("Ahmoo","150");
 
 console.log(ht);
+
 
 
