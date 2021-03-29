@@ -1,9 +1,15 @@
 // SEPERATE CHAINING
 
+class Node {
+  constructor(data, next = null) {
+    this.data = data;
+    this.next = next;
+  }
+}
+
 class HashTable {
     constructor(size = 100) {
-      this.size = new Array(size);
-      this.values = {};
+      this.table = new Array(size);
       this.length = 0;
     }
 
@@ -12,51 +18,82 @@ class HashTable {
       return key.toString().length  % this.size.length;
     }
 
-    add(key,value){
+    add(item){
       // yeni index degeri verir
-      let index = this.hash(key);
-      // index degerinde value yoksa obje olarak ata
-      if(!this.values.hasOwnProperty(index))
-        this.values[index] = [];
-      // index degerinde gonderilen key yoksa uzunlugu arttir.
-      if(!this.values[index].hasOwnProperty(key))
-        this.length++;
-      // index degrinin key degerine gelen value degerini ata. => { "0":{Canada:"300"} } 
-      this.values[index][key] = value;
+      let index = this.hash(item);
+
+      // node degeri olusturmak
+      let node = new Node(item);
+
+      // eger deger varsa node ile bir sonraki (next) degerine deger atiyoruz
+      if(this.table[index])
+        node.next = this.table[index]
+      
+      //eger deger yoksa n
+      this.table[index] = node;
     }
 
-    search(key){
-      // bana index degeri verir
-      let index = this.hash(key);
-      if(this.values.hasOwnProperty(index) && this.values[index].hasOwnProperty(key))
-        return this.values[index][key];
-      return null;
+    search(item){
+      for (let i = 0; i < this.table.length; i++) {
+        if(this.table[i]){
+          let current = this.table[i];
+          while(current){
+            if(current.data === item)
+              return true;
+          }
+          current = current.next;
+        }
+      }
+      return false;
     }
 
-    remove(key) {
-      let index = this.hash(key);
-   
-      for (let i = 0; i < this.values[index].length; i++) {
-         // Find the element in the chain
-         if (this.values[index][i].key === key) {
-            this.values[index].splice(i, 1);
-            return true;
-         }
+    remove(item) {
+      let index = this.hash(item);
+      if(this.table[index]){
+        if(this.table[index].data === item){
+          this.table[key] = this.table[key].next;
+        }
+        else{
+          let current = this.table[key].next;
+          let prev = this.table[key];
+          while(current){
+            if(current.data === item)
+              prev.next = current.next;
+            prev = current;
+            current = current.next;
+          }
+        }
       }
       return false;
    }
+   
+   size(){
+     let counter  = 0;
+     for(let i = 0; i < this.table.length; i++){
+       if(this.table[i]){
+         let current = this.table[i];
+         while(current){
+           counter++;
+           current = current.next;
+         }
+       }
+     }
+     return counter;
+    }
+    
+    isEmpty() {
+      return this.size() < 1 ? true : false;
+    }
+
     
 }
 
-
  
 const ht = new HashTable();
-ht.add("Canada","300");
-ht.add("Germany","100");
-ht.add("Italy","50");
-ht.add("Ahmoo","150");
+ht.add("Canada");
+ht.add("Germany");
+ht.add("Italy");
+ht.add("Ahmoo");
 
-console.log(ht.search("Italy"));
+console.log(ht.search("Canada"));
 console.log(ht);
-
-

@@ -1,51 +1,59 @@
+// Lineer Porbing
+
 class HashTable {
-    constructor(size){
-        this.size  = size;
-        this.keys = []
-        this.values = []
-        this.limit = 0;
+    constructor(size = 100) {
+      this.size = new Array(size);
+      this.values = {};
+      this.length = 0;
     }
 
     hash(key){
-        // gonderilen key degerinin tam sayi olup olmadigini kontrol eder
-        if(!Number.isInteger(key)) throw 'must be int';
-
-        return key % this.size;
+      return key.toString().length  % this.size.length;
     }
 
     add(key,value){
-        if(this.limit >= this.size) throw 'hash table is full';
-
-        let index = this.hash(key);
-        while(this.keys[index] != null){
-            index++;
-            index = index % this.size;
-        }
-        this.keys[index] = key;
-        this.values[index] = value;
-        this.limit++;
-
+      let index = this.hash(key);
+      if(!this.values.hasOwnProperty(index))
+        this.values[index] = [];
+      if(!this.values[index].hasOwnProperty(key))
+        this.length++;
+      this.values[index][key] = value;
     }
 
     search(key){
-        let index = this.hash(key);
-
-        while(this.keys[index] != key){
-            index++;
-            index = index % this.size;
-        }
-
-        return this.values[index];
+      let index = this.hash(key);
+      if(this.values.hasOwnProperty(index) && this.values[index].hasOwnProperty(key))
+        return this.values[index][key];
+      return null;
     }
 
+    remove(key) {
+      let item = this.hash(key);
+      return this.values[item] = undefined;
+   }
+    
+    size(){
+      return this.length;
+    }
+
+    isEmpty() {
+      for( let i=0, len = this.length; i < len; i++) {
+       if( this.values[i] ) { 
+         return false 
+        };
+      }
+      return true
+    }
 }
 
 
-
-const ht = new HashTable(13);
-ht.add(7,"hi");
-ht.add(20,"hello");
-ht.add(79,"whather");
-ht.add(90,"sad");
+ 
+const ht = new HashTable();
+ht.add("Canada","300");
+ht.add("Germany","100");
+ht.add("Italy","50");
+ht.add("Ahmoo","150");
 
 console.log(ht);
+
+
