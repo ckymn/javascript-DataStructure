@@ -21,7 +21,7 @@ class BST {
     }
 
     let current = this.root;
-
+    
     const addSide = (str) => {
       if(!current[str]){
         current[str] = newNode;
@@ -182,10 +182,11 @@ class BST {
 let bst = new BST();
 
 bst.insert(4);
+bst.insert(2);
+bst.insert(3);
 bst.insert(32);
 bst.insert(12);
 bst.insert(11);
 bst.insert(22);
-bst.remove(4);
-console.log(bst.inOrder());
-console.log(bst.findMin());
+
+console.log(bst);
