@@ -2,7 +2,7 @@ class Node {
   constructor(value, left = null, right = null) {
     this.value = value;
     this.left = left;
-    this.right = left;
+    this.right = right;
   }
 }
 
@@ -17,7 +17,6 @@ class BST {
     // Agac bos ise
     if (!this.root) {
       this.root = newNode;
-      return this;
     }
 
     let current = this.root;
@@ -27,7 +26,7 @@ class BST {
         current[str] = newNode;
         return this;
       }
-      current = current[str];
+      return current = current[str];
     }
 
     while(true){
@@ -40,7 +39,7 @@ class BST {
   // en kucuk node bulma
   findMin(node = this.root){
     if(node){
-      while(node && node.left !==null)
+      while(node.left !==null)
         node = node.left;
       return node.value;
     }
@@ -50,7 +49,7 @@ class BST {
   // en buyuk node bulma
   findMax(node = this.root){
     if(node){
-      while(node && node.right !== null)
+      while(node.right !== null)
         node = node.right;
       return node.value;
   }
@@ -101,15 +100,13 @@ class BST {
         //dugumde cocuk yok
         if(node.left === null && node.right === null)
           return null;
-        // root varsa ve sagda eleman varsa sag'dakilerin en kucugunu donder
+        // root varsa ve sagda eleman varsa sag'dakilerin en "kucugunu" donder
         if(node.right !== null){
-          node.value = this.findMin(node.right);
           node.right = removeNode(node.right, this.findMin(node.right));
           return node;
         }
-        // root varsa ve sagda eleman varsa sol'dakilerin en buyugunu donder
+        // root varsa ve solda eleman varsa sol'dakilerin en " buyugunu" donder
         if(node.left !== null){
-          node.value = this.findMax(node.left);
           node.left = removeNode(node.left, this.findMax(node.left));
           return node;
         }
@@ -133,7 +130,7 @@ class BST {
   //okuma
   /**
    * 1.Infix(inOrder) : Left->Node->Right || Right->Node->Left
-   * 2.Prefix(preOrder): Node->Left-Right || Node->Right->Left
+   * 2.Prefix(preOrder): Node->Left->Right || Node->Right->Left
    * 3.Postfix(postOrder): Left->Right->Node || Right->Left->Node
    */
   inOrder(){
@@ -177,6 +174,7 @@ class BST {
     traverse(current);
     return arr;
   }
+
 }
 
 let bst = new BST();
@@ -188,5 +186,11 @@ bst.insert(32);
 bst.insert(12);
 bst.insert(11);
 bst.insert(22);
+bst.insert(4);
 
 console.log(bst);
+console.log(bst.inOrder());
+console.log(bst.postOrder());
+console.log(bst.preOrder());
+
+
