@@ -30,10 +30,24 @@ class BST {
     }
 
     while(true){
-      if(data === current.value) return this;
+      if(data === current.value) return;
       if(data < current.value) addSide("left"); 
       if(data > current.value) addSide("right");
     }
+  }
+  
+  // arama islemi hem sag hemde sol icin yapilacagindan recursive(yinelemeli) yapilmali.
+  find(data, node = this.root){
+
+    if(node === null)
+      return false;
+    if(data < node.value){
+      return this.find(data, node.left)
+    } 
+    else if(data > node.value){
+      return this.find(data, node.right);
+    }
+    return node.value;
   }
 
   // en kucuk node bulma
@@ -52,19 +66,8 @@ class BST {
       while(node.right !== null)
         node = node.right;
       return node.value;
-  }
-  return null;
-}
-
-  // node bulma
-  find(data){
-    let current = this.root;
-    while(current.value !== data){
-      if(data < current.value)
-        current = current.left;
-      current = current.right;
     }
-    return current;
+    return null;
   }
 
   // mevcut olup olmadigi
@@ -136,6 +139,8 @@ class BST {
   inOrder(){
     let arr = [];
     let current = this.root;
+
+    if(current === null) return;
     
     let traverse = (node) =>{
       if(node.left) traverse(node.left);
@@ -151,6 +156,8 @@ class BST {
     let arr =  [];
     let current = this.root;
 
+    if(current === null) return;
+
     let traverse = (node) =>{
       if(node.left) traverse(node.left);
       if(node.right) traverse(node.right);
@@ -164,6 +171,8 @@ class BST {
   preOrder(){
     let arr = [];
     let current = this.root;
+    
+    if(current === null) return;
 
     let traverse = (node) =>{
       arr.push(node.value);
@@ -186,11 +195,12 @@ bst.insert(32);
 bst.insert(12);
 bst.insert(11);
 bst.insert(22);
-bst.insert(4);
 
 console.log(bst);
 console.log(bst.inOrder());
 console.log(bst.postOrder());
 console.log(bst.preOrder());
+
+console.log(bst.find(2));
 
 
