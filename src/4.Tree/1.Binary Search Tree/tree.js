@@ -103,16 +103,19 @@ class BST {
         //dugumde cocuk yok
         if(node.left === null && node.right === null)
           return null;
-        // root varsa ve sagda eleman varsa sag'dakilerin en "kucugunu" donder
-        if(node.right !== null){
-          node.right = removeNode(node.right, this.findMin(node.right));
-          return node;
-        }
+        
         // root varsa ve solda eleman varsa sol'dakilerin en " buyugunu" donder
         if(node.left !== null){
+          node.value = this.findMax(node.left);
           node.left = removeNode(node.left, this.findMax(node.left));
           return node;
         }
+
+        // root varsa ve sagda eleman varsa sag'dakilerin en "kucugunu" donder
+        node.value = this.findMin(node.right);
+        node.right = removeNode(node.right, this.findMin(node.right));
+        return node;
+      
       } 
 
       // aradigimiz deger root degilse sol'a bak
@@ -196,11 +199,11 @@ bst.insert(12);
 bst.insert(11);
 bst.insert(22);
 
+bst.remove(4);
+
 console.log(bst);
 console.log(bst.inOrder());
 console.log(bst.postOrder());
 console.log(bst.preOrder());
-
-console.log(bst.find(2));
 
 
