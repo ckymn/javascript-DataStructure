@@ -15,7 +15,7 @@ class AVL {
   // dugum yukseklikleri
   height(N) {
     if (N === null) return 0;
-    return N.height;
+    return N.height; // hegiht : sol.h - sag.h
   }
 
   // saga dondurme
@@ -97,9 +97,9 @@ class AVL {
   // node ekleme
   insertNode(data) {
     console.log(data);
-    this.root = this.insertNodeHelper(root, data);
+    this.root = this.insertNodeHelper(this.root, data);
   }
-  // en kucuk node degeri
+  // en kucuk node degeri 
   nodeWithMinimumValue(node) {
     let current = node;
     while (current.left !== null) {
@@ -110,8 +110,8 @@ class AVL {
 
   deleteNodeHelper(node, data) {
     // find the node to be deleted and remove it
-    if (root == null) {
-      return root;
+    if (this.root == null) {
+      return this.root;
     }
     if (data < node.value) {
       node.left = deleteNodeHelper(node.left, data);
@@ -192,6 +192,4 @@ avl.insertNode(61);
 avl.insertNode(8);
 avl.insertNode(11);
 avl.preOrder();
-avl.deleteNode(13);
-console.log("After Deletion: ");
-avl.preOrder();
+console.log(avl);
