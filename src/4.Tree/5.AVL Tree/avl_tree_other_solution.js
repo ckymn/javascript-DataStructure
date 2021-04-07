@@ -71,22 +71,35 @@ class AVL {
             }
         }
         // agacin yukseklik durumu : hangisi daha fazla ise ordaki degeri 1 arrtidik
-        current.height = Math.max(this.height(current.left) , this.height(current.right)) +1
+        current.height = Math.max(this.height(current.left) , this.height(current.right)) +1;
+        return current;
     }
     // node ekle
     insertNode(data){
         this.root =  this.insert(this.root, data);
     }
+
+    // preOrder ile ekrana bastirma node -> left -> right || node -> right -> left
+    preOrder(){
+        this.preOrderHelper(this.root)
+    }
+    preOrderHelper(node) {
+    if (node) {
+        this.preOrderHelper(node.left);
+        console.log(node.value);
+        this.preOrderHelper(node.right);
+    }
+}
 }
 
 
 const avl = new AVL();
 avl.insertNode(33);
-avl.insertNode(13);
-avl.insertNode(53);
-avl.insertNode(9);
-avl.insertNode(21);
-avl.insertNode(61);
-avl.insertNode(8);
-avl.insertNode(11);
+avl.insertNode(12);
+avl.insertNode(35);
+avl.insertNode(34);
+avl.insertNode(36);
+avl.insertNode(37);
+avl.insertNode(40);
+avl.preOrder();
 console.log(avl);
