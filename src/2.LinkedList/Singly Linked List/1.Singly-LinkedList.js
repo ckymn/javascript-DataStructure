@@ -1,12 +1,19 @@
+/**
+ * Bagli Listeler bellekte herzaman ardisik siralanmaz 
+ * Bundan dolayi her elemana ayri hafiza alani ayrilir
+ * Elemana index degeri ile degil Referans degeri ile erisilir.
+ */
+
 class Node {
   constructor(value, next = null) {
     this.value = value;
     this.next = next;
   }
 }
+
 class LinkedList {
   constructor() {
-    this.head = null;
+    this.head = null; 
     this.tail = null;
     this.length = 0;
   }
@@ -20,6 +27,7 @@ class LinkedList {
       this.tail = node;
     } else {
       this.tail.next = node;
+      node.next = null;
       this.tail = node;
     }
     this.length++;
@@ -52,10 +60,10 @@ class LinkedList {
 
   //Listenin basina bir oge ekleme islemidir.
   unshift(value) {
-    //yeni bir degisken eklenecegi zaman nesnemizi olsuturuyoruz
     const node = new Node(value);
+
     //eger basta listemiz bos ise olusturulan nesnemizi head, ve tail'e atiyoruz
-    if (!this.tail) {
+    if (!this.head) {
       this.head = node;
       this.tail = node;
     }
@@ -91,8 +99,9 @@ class LinkedList {
       current = current.next;
       counter++;
     }
-    return current.value;
+    return current;
   }
+
   //Listede verilen index'i get ile bulur. daha sonra value degerini ona atar.
   set(index, value) {
     const node = this.get(index);
@@ -133,9 +142,8 @@ class LinkedList {
     if (index === 0) return this.shift();
     if (index === this.length - 1) return this.pop();
 
-    let removed = this.head;
     let previous = this.get(index - 1);
-    removed = previous.next;
+    let removed = previous.next;
     previous.next = removed.next;
 
     this.length--;
@@ -157,6 +165,7 @@ class LinkedList {
     }
     return prev;
   }
+
   //Listedeki son degei bul
   getLast() {
     if (!this.head) {
@@ -221,11 +230,9 @@ class LinkedList {
 }
 
 let list = new LinkedList();
-list.push("muhammet");
 list.push(12);
-list.push(14);
-list.push("A");
-
-list.remove(1);
-
+list.push(13);
+list.push(15);
+list.insert(2,11);
+list.remove(2);
 console.log(list.print());
