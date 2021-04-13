@@ -234,5 +234,5 @@ list.push(12);
 list.push(13);
 list.push(15);
 list.insert(2,11);
-list.remove(2);
+
 console.log(list.print());
