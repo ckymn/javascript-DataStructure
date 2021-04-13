@@ -4,7 +4,7 @@
 
 // ! SOLUTION 1
 const is_array = (input) =>{
-    return input instanceof Array ? true : false;
+    return input instanceof Array ? true : false
 }
 
 
