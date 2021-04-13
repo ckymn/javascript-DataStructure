@@ -1,3 +1,8 @@
+/**
+ * Burda kural LIFO (son giren ilk cikar)
+ * Girilen eleman da bastan isleme tabi tutulur
+ * Cikarilacak eleman da bastan isleme tabi tutulur
+ */
 class Node {
   constructor(value, next = null) {
     this.value = value;
