@@ -1,3 +1,8 @@
+/**
+ * 1.oncelik this.head.prev = this.tail 
+ * 2.oncelik this.tail.next = this.head
+ */
+
 class Node {
   constructor(value, prev = null, next = null) {
     this.value = value;
@@ -34,10 +39,11 @@ class CircularLinkedList {
   }
 
   insert(value, index = 0) {
-    if (index < 0 || index > this.length) return undefined;
-
     const node = new Node(value);
     let current = this.head;
+    
+    if (index < 0 || index > this.length) return undefined;
+
     // basa dugum ekleme
     if (index === 0) {
       node.next = this.head;
@@ -72,7 +78,7 @@ class CircularLinkedList {
     this.tail.next = this.head;
 
     this.length++;
-    return true;
+    return this;
   }
 
   remove(index = 0) {
@@ -111,7 +117,7 @@ class CircularLinkedList {
       }
 
       this.length--;
-      return current.value;
+      return this;
     }
   }
 
@@ -151,7 +157,6 @@ class CircularLinkedList {
     return counter;
   }
 
-  // Listenin value degerlerini string halde gosterir
   toString() {
     if (!this.length) return "";
     let str = `${this.head.value}`;
@@ -163,7 +168,7 @@ class CircularLinkedList {
     }
     console.log(str);
   }
-  // Listeyi gosterir.
+  
   print() {
     let arr = [];
     if (this.length) {
@@ -182,8 +187,5 @@ let list = new CircularLinkedList();
 list.push(1);
 list.push(2);
 list.push(3);
-// list.remove(2);
-// list.reverse();
 
-list.print();
-list.toString();
+console.log(list);
