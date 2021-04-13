@@ -28,7 +28,8 @@ class StackLinkedList {
       newNode.next = temp;
       this.head = newNode;
     }
-    return ++this.length;
+    ++this.length;
+    return this;
   }
 
   // Listenin basindan eleman cikarir.
@@ -36,12 +37,10 @@ class StackLinkedList {
     let temp = this.head;
     
     if(temp){
-      let elm = temp.value;
-      temp = temp.next;
-      this.head = temp;
+      this.head = this.head.next;
 
       this.length--;
-      return elm;
+      return temp.value;
     }
 
     return null;
@@ -83,5 +82,6 @@ list._push(100);
 list._push(200);
 list._push(300);
 list._push(400);
+list._pop();
 
 console.log(list);
