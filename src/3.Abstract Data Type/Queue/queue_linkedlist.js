@@ -1,3 +1,8 @@
+/**
+ * Burda kural FIFO (ilk giren ilk cikar)
+ * Giren Eleman bastan islem gorur
+ * Cikan Eleman sondan islem gorur 
+ */
 class Node {
   constructor(value, next = null) {
     this.value = value;
@@ -20,10 +25,12 @@ class QueueLinkedList {
       this.tail = newNode;
     } else {
       this.tail.next = newNode;
+      newNode.next = null;
       this.tail = newNode;
     }
 
     this.length++;
+    return this;
   }
 
   // listenin basindan dugum cikarma
@@ -43,7 +50,7 @@ class QueueLinkedList {
   }
 
   // Ilk elemani donmek
-  _front = () => {
+  _front(){
     if(this.head)
       return this.head.value;
     
@@ -51,7 +58,7 @@ class QueueLinkedList {
   }
 
   // Son Elemani donmek
-  _rear = () => {
+  _rear(){
     let current = this.head;
 
     if(current === null)
@@ -64,7 +71,7 @@ class QueueLinkedList {
     return current.value;
   }
 
-  _toArray = () => {
+  _toArray(){
     let arr = [];
     while (this.head) {
       arr.push(this.head.value);
@@ -73,15 +80,15 @@ class QueueLinkedList {
     return arr;
   }
 
-  _isEmpty = () => {
+  _isEmpty(){
     return this.length === 0;
   }
 
-  _size = () => {
+  _size(){
     return this.length;
   }
 
-  _clear = () => {
+  _clear(){
     this.head = null;
     this.length = 0;
   }
