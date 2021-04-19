@@ -79,14 +79,16 @@ class AVL {
         this.root =  this.insert(this.root, data);
     }
 
+     
+
     // preOrder ile ekrana bastirma node -> left -> right || node -> right -> left
     preOrder(){
         this.preOrderHelper(this.root)
     }
     preOrderHelper(node) {
     if (node) {
-        this.preOrderHelper(node.left);
         console.log(node.value);
+        this.preOrderHelper(node.left);
         this.preOrderHelper(node.right);
     }
 }

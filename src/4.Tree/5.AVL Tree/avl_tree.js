@@ -1,8 +1,8 @@
 class Node {
-  constructor(value, left = null, right = null) {
+  constructor(value) {
     this.value = value;
-    this.right = right;
-    this.left = left;
+    this.right = null;
+    this.left = null;
     this.height = 1;
   }
 }
@@ -50,19 +50,18 @@ class AVL {
     return this.height(N.left) - this.height(N.right);
   }
 
-  insertNodeHelper(node, data) {
+  insert(node, data) {
     // hicbir dugum yoksa
-    if (node === null) return new Node(data);
+    if (node === null) 
+      return new Node(data);
     if (data < node.value) {
-      node.left = this.insertNodeHelper(node.left, data);
+      node.left = this.insert(node.left, data);
     } else if (data > node.value) {
-      node.right = this.insertNodeHelper(node.right, data);
-    } else {
-      return node;
+      node.right = this.insert(node.right, data);
     }
 
     // her dugum icin denge faktorunu guncelle
-    node.height = !+Math.max(this.height(node.left), this.height(node.right));
+    node.height = 1 + Math.max(this.height(node.left), this.height(node.right));
 
     // yukseklik farki hesaplama
     let balanceFactor = this.getBalanceFactor(node);
@@ -94,11 +93,13 @@ class AVL {
 
     return node;
   }
-  // node ekleme
+  // node recursive ekleme
   insertNode(data) {
-    console.log(data);
-    this.root = this.insertNodeHelper(this.root, data);
+    console.log(this.root)
+    this.root = this.insert(this.root, data);
   }
+
+
   // en kucuk node degeri 
   nodeWithMinimumValue(node) {
     let current = node;
@@ -114,11 +115,11 @@ class AVL {
       return this.root;
     }
     if (data < node.value) {
-      node.left = deleteNodeHelper(node.left, data);
+      node.left = this.deleteNodeHelper(node.left, data);
     } else if (data > node.value) {
-      node.right = deleteNodeHelper(node.right, data);
+      node.right = this.deleteNodeHelper(node.right, data);
     } else {
-      if (node.left === null || node.right === null) {
+      if ((node.left === null) || (node.right === null)) {
         let temp = null;
         if (temp == node.left) {
           temp = node.right;
@@ -135,7 +136,7 @@ class AVL {
       } else {
         let temp = this.nodeWithMinimumValue(node.right);
         node.value = temp.data;
-        node.right = deleteNodeHelper(node.right, temp.data);
+        node.right = this.deleteNodeHelper(node.right, temp.data);
       }
     }
     if (node == null) {
@@ -166,9 +167,10 @@ class AVL {
   }
   // node silme
   deleteNode(data) {
-    console.log(data);
-    this.root = this.deleteNodeHelper(root, data);
+    this.root = this.deleteNodeHelper(this.root, data);
   }
+
+  
   // preOrder ile ekrana bastirma node -> left -> right || node -> right -> left
   preOrder(){
       this.preOrderHelper(this.root)
@@ -191,5 +193,6 @@ avl.insertNode(21);
 avl.insertNode(61);
 avl.insertNode(8);
 avl.insertNode(11);
+// avl.deleteNode(9);
 avl.preOrder();
 console.log(avl);
