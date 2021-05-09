@@ -1,7 +1,5 @@
 # JS-DataStructure 🚀
 
-# JS-DataStructure 🚀
-
 * `A` [Array](src/1.Array)
 * `A` [Singly Linked List](src/2.LinkedList)
 * `A` [Doubly Linked List](src/2.LinkedList)
