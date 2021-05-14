@@ -14,8 +14,6 @@
 * `A` [Tree](src/4.Tree)
   * `1` [Binary Search Tree](src/4.Tree/1.BinarySearchTree)
   * `2` [AVL Tree](src/4.Tree/5.AVLTree)
-<<<<<<< HEAD
- 
-=======
- 
->>>>>>> c09d5777865a18293805e8cab20d7bfb50ad99df
+* `A` [Sort Algorithms](src/7.Sorting)
+  * `1` [Bubble Sort](src/7.Sorting/BubbleSort)
+  * `2` [Selection Sort](src/7.Sorting/SelectionSort)
