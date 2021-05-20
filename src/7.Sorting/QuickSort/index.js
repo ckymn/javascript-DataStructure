@@ -3,8 +3,11 @@
 // Yapilan degisiklikleri farkli bir degerde tutmak yerine , pivot degerini herzaman referens alarak yer degisikligi yapmak isin hizlanmasi da burda basliyor.
 // ! Eger sagdaki eleman pivot degerden buyuk ise replace edilmiyecek sagdaki gosterge 1 sola kayacak
 // ! Eger soldaki eleman pivot degerden kucuk ise replace edilmiyecek soldaki gosterge 1 saga kayacak
-//TODO: Eger sirasiz bir dizi verilmis ise Worts Case : O(logn^2)
-//TODO: Eger sirali bir dizi verilmis ise Worts Case : O(n^2) 
+//?: Eger sirasiz bir dizi verilmis ise Worts Case : O(logn^2)
+//?: Eger sirali bir dizi verilmis ise Worts Case : O(n^2) 
+
+
+//TODO: Pivot last of array
 
 const swap = (arr, left, right) => {
 	return [arr[left], arr[right]] = [arr[right], arr[left]]
@@ -14,7 +17,7 @@ const partition = (arr, low, high) => {
 	// Ilk elemani pivot eleman olarak secin
 	let pivot = arr[high];
 	let i = low;
-
+	
 	// Pivotu kullanarak diziyi ikiye bolun
 	for(let j = low; j < high; j++){
 		if(arr[j] <= pivot){
@@ -28,7 +31,7 @@ const partition = (arr, low, high) => {
 	return i;
 }
 
-const iterativeQucikSort = (arr) => {
+const quickSort = (arr) => {
 	// Başlangıç ​​ve bitiş dizinini depolamak için yığın
 	let stack = [];
 
@@ -53,6 +56,6 @@ const iterativeQucikSort = (arr) => {
 	}
 }
 
-let arr = [10, 9, 2, 4, 5, 36];
-iterativeQucikSort(arr);
+let arr = [10, 9, 2, 4, 6, 36];
+quickSort(arr);
 console.log(arr);
